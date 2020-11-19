@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drazebni_databaze", "DrazebniDatabaze\Drazebni_databaze.csproj", "{EB439D78-FBD4-4B66-9327-2E7399B48ACD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit_Test", "Unit_Test\Unit_Test.csproj", "{0822D49B-1442-4570-B049-C24939ADD65F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB439D78-FBD4-4B66-9327-2E7399B48ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB439D78-FBD4-4B66-9327-2E7399B48ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB439D78-FBD4-4B66-9327-2E7399B48ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB439D78-FBD4-4B66-9327-2E7399B48ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0822D49B-1442-4570-B049-C24939ADD65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0822D49B-1442-4570-B049-C24939ADD65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0822D49B-1442-4570-B049-C24939ADD65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0822D49B-1442-4570-B049-C24939ADD65F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1D2BCAC-C452-448D-BA19-231A2BBD1A9D}
+	EndGlobalSection
+EndGlobal
