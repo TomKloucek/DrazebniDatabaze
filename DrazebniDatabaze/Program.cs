@@ -12,7 +12,6 @@ namespace Drazebni_databaze
             Auto skoda = new Auto("Skoda", Skupina.B, DateTime.Now, 85, 6);
 
             Console.WriteLine(Convert.ToBoolean(bmw.CompareTo(skoda)));
-
             drazebniDatabaze.Pridej(bmw);
             drazebniDatabaze.Pridej(bmw);
             drazebniDatabaze.Pridej(skoda);
