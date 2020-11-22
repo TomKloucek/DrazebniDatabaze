@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -11,6 +12,13 @@ namespace Drazebni_databaze
         public Stack<Nabidka> prihozy;
         public bool drazbaBezi = true;
         private string popis;
+        public int id;
+
+        public Int32 ID
+        {
+            get => id;
+            set { id = value; }
+        }
 
         public string Popis
         {
@@ -22,7 +30,7 @@ namespace Drazebni_databaze
             set
             {
 
-                if (validDescription(value).Length == 0)
+                if (validDescription(value).Count == 0)
                 {
                     popis = value;
                 }
@@ -48,24 +56,23 @@ namespace Drazebni_databaze
             this.Popis = popis;
         }
 
-        public string[] validDescription(string popis)
+        public List<string> validDescription(string popis)
         {
             Dictionary<string,string> patterny = new Dictionary<string, string>();
             patterny.Add("email", @"([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)");
             patterny.Add("adresu", @"[A-z]+\d{1,3}");
             patterny.Add("telefon", @"[0-9]{9}");
             patterny.Add("webovou stranku", @"(www|http:|https:)+[^\s]+[\w]");
+
+            List<string> nesplnene = new List<string>();
             
-            string[] nesplnene = new string[4];
-            int i = 0;
 
             foreach (KeyValuePair<string, string> entry in patterny)
             {
                 Regex match = new Regex(entry.Value);
                 if (match.IsMatch(popis))
                 {
-                    nesplnene[i] = entry.Key;
-                    i++;
+                    nesplnene.Add(entry.Key);
                 }
                 
             }
@@ -75,6 +82,7 @@ namespace Drazebni_databaze
 
         public void pridej(Nabidka n)
         {
+            NabidkaDAO dao = new NabidkaDAO();
             if (prihozy.Count == 0)
             {
                 prihozy.Push(n);
@@ -83,6 +91,7 @@ namespace Drazebni_databaze
                 if (n.castka > prihozy.Peek().castka)
                 {
                     prihozy.Push(n);
+                    dao.Create(n, this);
                 }
                 else
                 {
@@ -91,6 +100,7 @@ namespace Drazebni_databaze
             }
             
         }
+
 
         public void konecDrazby()
         {
@@ -101,5 +111,7 @@ namespace Drazebni_databaze
         {
             return $"{drazeneAuto}";
         }
+
+        
     }
 }

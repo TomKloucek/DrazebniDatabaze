@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 
 namespace Drazebni_databaze
@@ -75,6 +76,19 @@ namespace Drazebni_databaze
         {
             return this.jmeno.CompareTo(other.jmeno);
         }
+
+        public Auto getByID(int id)
+        {
+            AutoDAO dao = new AutoDAO();
+            return dao.getByID(id);
+        }
+
+        public void Create(Auto a)
+        {
+
+        }
+
+        
 
 
     }

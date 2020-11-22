@@ -6,19 +6,15 @@ namespace Drazebni_databaze
     {
         static void Main(string[] args)
         {
-            
-            DrazebniDatabaze drazebniDatabaze = new DrazebniDatabaze();
-            Auto bmw = new Auto("bmw", Skupina.A, DateTime.Now, 75, 4);
-            Auto skoda = new Auto("Skoda", Skupina.B, DateTime.Now, 85, 6);
-
-            Console.WriteLine(Convert.ToBoolean(bmw.CompareTo(skoda)));
-            drazebniDatabaze.Pridej(bmw);
-            drazebniDatabaze.Pridej(bmw);
-            drazebniDatabaze.Pridej(skoda);
-            drazebniDatabaze.Vypis();
-            Console.WriteLine(drazebniDatabaze.HledejPodleJmena("bmw"));
+            string popisSpravne = "Bmw is a long established fact that a reader will be distracted by the readable " +
+                "content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less " +
+                "normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English." +
+                " Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text," +
+                " and a search for 'lorem ipsum' will uncover many web sites still in their infancy." +
+                " Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
 
             DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            DrazebniDatabaze test = new DrazebniDatabaze();
             try
             {
                 db.NactiUzivatele();
@@ -40,6 +36,30 @@ namespace Drazebni_databaze
              Nabidka n2 = new Nabidka(u1, 15);
              Nabidka n3 = new Nabidka(u2, 35);
 
+            Auto bmw = new Auto("bmw", Skupina.A, DateTime.Now, 75, 4);
+            Auto skoda = new Auto("Skoda", Skupina.B, DateTime.Now, 85, 6);
+
+            Drazba d = new Drazba(bmw, "sdffffffffffwsefwefwef");
+            d.pridej(n1);
+            d.pridej(n2);
+            d.pridej(n3);
+
+            Drazba d2 = new Drazba(skoda, "adwaduadhqaudhhudli");
+            d2.pridej(n1);
+            d2.pridej(n2);
+            d2.pridej(n3);
+
+            test.PridejDrazbu(d);
+            test.PridejDrazbu(d2);
+
+            Console.WriteLine(n1.PrihazujiciID());
+            Console.WriteLine(n3.PrihazujiciID());
+
+            Console.WriteLine(test.AktualniDrazba);
+            test.DrazbaSkoncila();
+            Console.WriteLine(test.AktualniDrazba);
+            test.DrazbaSkoncila();
+
 
             //    db.AddUzivatel(u1);
             //    db.AddUzivatel(u2);
@@ -58,20 +78,6 @@ namespace Drazebni_databaze
                  Console.WriteLine($"Uzivatel: {uzivatel.Jmeno} uz je ulozen na serveru");
              }
              }
-             */
-
-
-
-
-
-
-
-            string popisSpravne = "Bmw is a long established fact that a reader will be distracted by the readable " +
-                "content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less " +
-                "normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English." +
-                " Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text," +
-                " and a search for 'lorem ipsum' will uncover many web sites still in their infancy." +
-                " Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
 
             string popisSpatne = "Bmw is a long established fact that a reader will be distracted by the readable " +
                 "content of a page when looking at its layout. 123456789 of using Lorem Ipsum is that it has a more-or-less " +
@@ -80,24 +86,7 @@ namespace Drazebni_databaze
                 " and a search for 'lorem ipsum' www.jecnak.cz uncover many web sites still in their infancy." +
                 " Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
             
-                        Drazba d = new Drazba(bmw, popisSpravne);
-                        d.pridej(n1);
-                        d.pridej(n2);
-                        d.pridej(n3);
-
-                        Drazba d2 = new Drazba(skoda, popisSpravne);
-                        d2.pridej(n1);
-                        d2.pridej(n2);
-                        d2.pridej(n3);
-
-                        drazebniDatabaze.PridejDrazbu(d);
-                        drazebniDatabaze.PridejDrazbu(d2);
-
-                        
-                        Console.WriteLine(drazebniDatabaze.AktualniDrazba);
-                        drazebniDatabaze.DrazbaSkoncila();
-                        Console.WriteLine(drazebniDatabaze.AktualniDrazba);
-                        drazebniDatabaze.DrazbaSkoncila();
+                        */
 
 
         }

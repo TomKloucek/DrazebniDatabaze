@@ -114,37 +114,7 @@ namespace Drazebni_databaze
            
         }
 
-        public Uzivatel GetById(int id)
-        {
-            Uzivatel uzivatel = null;
-            SqlConnection conn = DatabaseConnection.GetInstance();
-
-            // 1. declare command object with parameter
-            using (SqlCommand command = new SqlCommand("SELECT * FROM uzivatel WHERE id = @Id", conn))
-            {
-                // 2. define parameters used in command 
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@Id";
-                param.Value = id;
-
-                // 3. add new parameter to command object
-                command.Parameters.Add(param);
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    uzivatel = new Uzivatel(
-                        jmeno: reader[1].ToString(),
-                        heslo: reader[2].ToString(),
-                        adresa: reader[3].ToString(),
-                        telefon: reader[4].ToString(),
-                        email: reader[5].ToString());
-                }
-                reader.Close();
-                return uzivatel;
-            }
-        }
-
+        
         public void Update(Uzivatel uzivatel)
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
@@ -180,6 +150,12 @@ namespace Drazebni_databaze
             {
                 Console.WriteLine(uzivatel);
             }
+        }
+
+        public Uzivatel GetById(int id)
+        {
+            UzivatelDAO dao = new UzivatelDAO();
+            return dao.GetById(id);
         }
     }
 }
