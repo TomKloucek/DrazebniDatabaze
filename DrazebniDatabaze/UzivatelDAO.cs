@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Drazebni_databaze
 {
-    class UzivatelDAO
+    public class UzivatelDAO
     {
         public Uzivatel GetById(int id)
         {
@@ -52,6 +52,53 @@ namespace Drazebni_databaze
                 reader.Close();
             }
             return id;
+        }
+
+        public void Update(Uzivatel uzivatel)
+        {
+            SqlConnection conn = DatabaseConnection.GetInstance();
+            SqlCommand command = null;
+
+            using (command = new SqlCommand("UPDATE uzivatel SET jmeno=@jmeno,heslo=@heslo,adresa=@adresa,telefon=@telefon,email=@email where id = @id", conn))
+            {
+                command.Parameters.Add(new SqlParameter("@id", uzivatel.Id));
+                command.Parameters.Add(new SqlParameter("@jmeno", uzivatel.Jmeno));
+                command.Parameters.Add(new SqlParameter("@heslo", uzivatel.Heslo));
+                command.Parameters.Add(new SqlParameter("@adresa", uzivatel.Adresa));
+                command.Parameters.Add(new SqlParameter("@telefon", uzivatel.Telefon));
+                command.Parameters.Add(new SqlParameter("@email", uzivatel.Email));
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Remove(string jmeno)
+        {
+            SqlConnection conn = DatabaseConnection.GetInstance();
+
+            using (SqlCommand command = new SqlCommand("DELETE FROM uzivatel WHERE jmeno = @jmeno", conn))
+            {
+                command.Parameters.Add(new SqlParameter("@jmeno", jmeno));
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Create(Uzivatel uzivatel)
+        {
+            SqlConnection conn = DatabaseConnection.GetInstance();
+            SqlCommand command = null;
+
+            using (command = new SqlCommand("INSERT INTO uzivatel(jmeno,heslo,adresa,telefon,email) VALUES (@jmeno,@heslo,@adresa,@telefon,@email)", conn))
+            {
+
+                command.Parameters.Add(new SqlParameter("@jmeno", uzivatel.Jmeno));
+                command.Parameters.Add(new SqlParameter("@heslo", uzivatel.Heslo));
+                command.Parameters.Add(new SqlParameter("@adresa", uzivatel.Adresa));
+                command.Parameters.Add(new SqlParameter("@telefon", uzivatel.Telefon));
+                command.Parameters.Add(new SqlParameter("@email", uzivatel.Email));
+                command.ExecuteNonQuery();
+                command.CommandText = "Select @@Identity";
+                uzivatel.Id = Convert.ToInt32(command.ExecuteScalar());
+            }
         }
 
     }

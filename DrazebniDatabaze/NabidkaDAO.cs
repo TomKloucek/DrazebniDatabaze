@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Drazebni_databaze
 {
-    class NabidkaDAO
+    public class NabidkaDAO
     {
         public int GetID(Nabidka n)
         {

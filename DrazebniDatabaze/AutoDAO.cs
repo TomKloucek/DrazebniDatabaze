@@ -5,8 +5,17 @@ using System.Text;
 
 namespace Drazebni_databaze
 {
-    class AutoDAO
+    /// <summary>
+    /// Trida vytvari objekt DAO ktery slouzi pro operace na databazi
+    /// s objekty typu auto
+    /// </summary>
+    public class AutoDAO
     {
+        /// <summary>
+        /// Fuknce na ziskani id zadaneho auta
+        /// </summary>
+        /// <param name="a">Objekt auto u ktereho hledame id</param>
+        /// <returns>Pokud nalezne dotazovane auto v db, pak vrati jeho id, v pripade ze ne vrati 0</returns>
         public int GetID(Auto a)
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
@@ -25,6 +34,12 @@ namespace Drazebni_databaze
                 return 0;
             }
         }
+
+        /// <summary>
+        /// Vraci auto s odpovidajicim id v databazi
+        /// </summary>
+        /// <param name="id">id auta ktere hledame v db</param>
+        /// <returns>Vraci nalezene auto v db</returns>
         public Auto getByID(int id)
         {
             Auto auto = null;
@@ -53,6 +68,10 @@ namespace Drazebni_databaze
             }
         }
 
+        /// <summary>
+        /// Updatne auto na serveru podle atributu zadaneho auta
+        /// </summary>
+        /// <param name="a">Auto ktere chceme aktualizovat</param>
         public void Update(Auto a)
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
@@ -68,15 +87,36 @@ namespace Drazebni_databaze
                 command.ExecuteNonQuery();
             }
         }
-
+        /// <summary>
+        /// Odebere zadane auto z db
+        /// </summary>
+        /// <param name="a">Auto ktere chceme z db smazat</param>
         public void Remove(Auto a)
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
 
-            using (SqlCommand command = new SqlCommand("DELETE FROM auto WHERE id = @id", conn))
+            using (SqlCommand command = new SqlCommand("DELETE FROM car WHERE id = @id", conn))
             {
                 command.Parameters.Add(new SqlParameter("@id", this.GetID(a)));
                 command.ExecuteNonQuery();
+            }
+        }
+
+        public void Create(Auto a)
+        {
+            SqlConnection conn = DatabaseConnection.GetInstance();
+            SqlCommand command = null;
+            using (command = new SqlCommand("INSERT INTO car(jmeno,vykon,delka,datum,skupina) VALUES (@jmeno,@vykon,@delka,@datum,@skupina)", conn))
+            {
+
+                command.Parameters.Add(new SqlParameter("@jmeno", a.Jmeno));
+                command.Parameters.Add(new SqlParameter("@vykon", a.Vykon));
+                command.Parameters.Add(new SqlParameter("@delka", a.Delka));
+                command.Parameters.Add(new SqlParameter("@datum", a.DatumVydani));
+                command.Parameters.Add(new SqlParameter("@skupina", a.Skupina));
+                command.ExecuteNonQuery();
+                command.CommandText = "Select @@Identity";
+                a.ID = Convert.ToInt32(command.ExecuteScalar());
             }
         }
 

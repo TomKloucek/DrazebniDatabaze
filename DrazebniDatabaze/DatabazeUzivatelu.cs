@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace Drazebni_databaze
 {
     public class DatabazeUzivatelu
     {
         private static DatabazeUzivatelu instance = null;
+        public UzivatelDAO dao = new UzivatelDAO();
 
         private DatabazeUzivatelu()
         {
@@ -96,57 +96,24 @@ namespace Drazebni_databaze
         }
         public void Save(Uzivatel uzivatel)
         {
-            SqlConnection conn = DatabaseConnection.GetInstance();
-            SqlCommand command = null;
-
-                using (command = new SqlCommand("INSERT INTO uzivatel(jmeno,heslo,adresa,telefon,email) VALUES (@jmeno,@heslo,@adresa,@telefon,@email)", conn))
-                {
-
-                    command.Parameters.Add(new SqlParameter("@jmeno", uzivatel.Jmeno));
-                    command.Parameters.Add(new SqlParameter("@heslo", uzivatel.Heslo));
-                    command.Parameters.Add(new SqlParameter("@adresa", uzivatel.Adresa));
-                    command.Parameters.Add(new SqlParameter("@telefon", uzivatel.Telefon));
-                    command.Parameters.Add(new SqlParameter("@email", uzivatel.Email));
-                    command.ExecuteNonQuery();
-                    command.CommandText = "Select @@Identity";
-                    uzivatel.Id = Convert.ToInt32(command.ExecuteScalar());
-                }
-           
+            dao.Create(uzivatel);
         }
 
         
         public void Update(Uzivatel uzivatel)
         {
-            SqlConnection conn = DatabaseConnection.GetInstance();
-            SqlCommand command = null;
-
-            using (command = new SqlCommand("UPDATE uzivatel SET jmeno=@jmeno,heslo=@heslo,adresa=@adresa,telefon=@telefon,email=@email where id = @id", conn))
-            {
-                command.Parameters.Add(new SqlParameter("@id", uzivatel.Id));
-                command.Parameters.Add(new SqlParameter("@jmeno", uzivatel.Jmeno));
-                command.Parameters.Add(new SqlParameter("@heslo", uzivatel.Heslo));
-                command.Parameters.Add(new SqlParameter("@adresa", uzivatel.Adresa));
-                command.Parameters.Add(new SqlParameter("@telefon", uzivatel.Telefon));
-                command.Parameters.Add(new SqlParameter("@email", uzivatel.Email));
-                command.ExecuteNonQuery();
-            }
+            dao.Update(uzivatel);
         }
 
         public void Remove(string jmeno)
         {
-            SqlConnection conn = DatabaseConnection.GetInstance();
-
-            using (SqlCommand command = new SqlCommand("DELETE FROM uzivatel WHERE jmeno = @jmeno", conn))
-            {
-                command.Parameters.Add(new SqlParameter("@jmeno", jmeno));
-                command.ExecuteNonQuery();
-            }
+            dao.Remove(jmeno);
         }
 
         public void VypisUzivatelu()
         {
             Console.WriteLine("\n");
-            foreach (var uzivatel in this.uzivatele)
+            foreach (var uzivatel in uzivatele)
             {
                 Console.WriteLine(uzivatel);
             }
@@ -154,7 +121,6 @@ namespace Drazebni_databaze
 
         public Uzivatel GetById(int id)
         {
-            UzivatelDAO dao = new UzivatelDAO();
             return dao.GetById(id);
         }
     }

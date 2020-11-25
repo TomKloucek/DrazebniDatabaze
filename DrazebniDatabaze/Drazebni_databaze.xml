@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Drazebni_databaze</name>
+    </assembly>
+    <members>
+        <member name="T:Drazebni_databaze.AutoDAO">
+            <summary>
+            Trida vytvari objekt DAO ktery slouzi pro operace na databazi
+            s objekty typu auto
+            </summary>
+        </member>
+        <member name="M:Drazebni_databaze.AutoDAO.GetID(Drazebni_databaze.Auto)">
+            <summary>
+            Fuknce na ziskani id zadaneho auta
+            </summary>
+            <param name="a">Objekt auto u ktereho hledame id</param>
+            <returns>Pokud nalezne dotazovane auto v db, pak vrati jeho id, v pripade ze ne vrati 0</returns>
+        </member>
+        <member name="M:Drazebni_databaze.AutoDAO.getByID(System.Int32)">
+            <summary>
+            Vraci auto s odpovidajicim id v databazi
+            </summary>
+            <param name="id">id auta ktere hledame v db</param>
+            <returns>Vraci nalezene auto v db</returns>
+        </member>
+        <member name="M:Drazebni_databaze.AutoDAO.Update(Drazebni_databaze.Auto)">
+            <summary>
+            Updatne auto na serveru podle atributu zadaneho auta
+            </summary>
+            <param name="a">Auto ktere chceme aktualizovat</param>
+        </member>
+        <member name="M:Drazebni_databaze.AutoDAO.Remove(Drazebni_databaze.Auto)">
+            <summary>
+            Odebere zadane auto z db
+            </summary>
+            <param name="a">Auto ktere chceme z db smazat</param>
+        </member>
+        <member name="T:Drazebni_databaze.DrazbaDAO">
+            <summary>
+            Trida vytvari objekt DAO ktery slouzi pro operace na databazi
+            s objekty typu drazba
+            </summary>
+        </member>
+        <member name="F:Drazebni_databaze.DrazbaDAO.dao">
+            <summary>
+            Instance AutoDAO, protoze ji pouzivame v programu casteji
+            </summary>
+        </member>
+        <member name="M:Drazebni_databaze.DrazbaDAO.GetID(Drazebni_databaze.Drazba)">
+            <summary>
+            Fuknce na ziskani id zadanehe drazby
+            </summary>
+            <param name="d">Objekt drazba u ktereho hledame id</param>
+            <returns>Pokud nalezne dotazovanou drazbu v db, pak vrati jeji id, v pripade ze ne vrati 0</returns>
+        </member>
+    </members>
+</doc>

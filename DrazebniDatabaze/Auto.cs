@@ -16,8 +16,14 @@ namespace Drazebni_databaze
         private string jmeno;
         private Skupina skupina;
         private DateTime datumVydani;
+        public int id;
 
-        public int Vykon
+        public Int32 ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        public Int32 Vykon
         {
             get { return vykon; }
             set
@@ -76,20 +82,6 @@ namespace Drazebni_databaze
         {
             return this.jmeno.CompareTo(other.jmeno);
         }
-
-        public Auto getByID(int id)
-        {
-            AutoDAO dao = new AutoDAO();
-            return dao.getByID(id);
-        }
-
-        public void Create(Auto a)
-        {
-
-        }
-
-        
-
 
     }
 }

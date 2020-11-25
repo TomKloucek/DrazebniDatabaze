@@ -6,13 +6,6 @@ namespace Drazebni_databaze
     {
         static void Main(string[] args)
         {
-            string popisSpravne = "Bmw is a long established fact that a reader will be distracted by the readable " +
-                "content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less " +
-                "normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English." +
-                " Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text," +
-                " and a search for 'lorem ipsum' will uncover many web sites still in their infancy." +
-                " Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
-
             DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
             DrazebniDatabaze test = new DrazebniDatabaze();
             try
@@ -52,6 +45,7 @@ namespace Drazebni_databaze
             test.PridejDrazbu(d);
             test.PridejDrazbu(d2);
 
+
             Console.WriteLine(n1.PrihazujiciID());
             Console.WriteLine(n3.PrihazujiciID());
 
@@ -59,35 +53,6 @@ namespace Drazebni_databaze
             test.DrazbaSkoncila();
             Console.WriteLine(test.AktualniDrazba);
             test.DrazbaSkoncila();
-
-
-            //    db.AddUzivatel(u1);
-            //    db.AddUzivatel(u2);
-            //   db.AddUzivatel(u3);
-            //  Uzivatel test = new Uzivatel("Test", "ffjjEds5D", "zbytecny@gmail.com", "Ulice 54", "456789789");
-            //db.AddUzivatel(test);
-
-            /* foreach (var uzivatel in db.uzivatele)
-             {
-             try
-             {
-                 db.Save(uzivatel);
-             }
-             catch(Exception e)
-             {
-                 Console.WriteLine($"Uzivatel: {uzivatel.Jmeno} uz je ulozen na serveru");
-             }
-             }
-
-            string popisSpatne = "Bmw is a long established fact that a reader will be distracted by the readable " +
-                "content of a page when looking at its layout. 123456789 of using Lorem Ipsum is that it has a more-or-less " +
-                "normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English." +
-                " Karlova5 desktop publishing packages and web page editors@chudaci.com now use Lorem Ipsum as their default model text," +
-                " and a search for 'lorem ipsum' www.jecnak.cz uncover many web sites still in their infancy." +
-                " Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
-            
-                        */
-
 
         }
 
