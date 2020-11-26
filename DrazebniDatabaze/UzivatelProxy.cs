@@ -9,7 +9,7 @@ namespace Drazebni_databaze
         private Dictionary<int,Uzivatel> uzivatele = new Dictionary<int,Uzivatel>();
         private UzivatelDAO dao = new UzivatelDAO();
 
-        public Uzivatel getByID(int id)
+        public Uzivatel GetById(int id)
         {
             if (!uzivatele.ContainsKey(id))
             {
@@ -18,7 +18,7 @@ namespace Drazebni_databaze
             return uzivatele[id];
         }
 
-        public int getID(Uzivatel u)
+        public int GetId(Uzivatel u)
         {
         int id = dao.UzivatelID(u);
             uzivatele[id] = u;

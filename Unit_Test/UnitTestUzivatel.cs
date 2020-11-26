@@ -84,9 +84,8 @@ namespace Unit_Test
         [Test]
         public void TestUzivatelAdresaSpravna()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com","Pri 25","605 897 123");
 
             try
             {
@@ -102,18 +101,17 @@ namespace Unit_Test
         [Test]
         public void TestUzivatelEquals()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
-            Uzivatel u1 = new Uzivatel("karel", "heslo", setValidator, "spatny@email.com", "Adresa 1", "605 258 789");
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com", "Pri 25", "605 897 123");
+            Uzivatel u1 = new Uzivatel("karel", "heslo", "spatny@email.com", "Adresa 1", "605 258 789");
             Assert.AreEqual(true, u1.Equals(u));
         }
         [Test]
         public void TestTelephoneGood()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            
+            Uzivatel u = new Uzivatel("karel", "Lilecek1","spatny@frajer.com", "Pri 25", "605 897 123");
 
             try
             {
@@ -128,9 +126,8 @@ namespace Unit_Test
         [Test]
         public void TestTelephoneBad()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            Uzivatel u = new Uzivatel("karel", "Lilecek1","spatny@frajer.com", "Pri 25", "605 897 123");
 
             try
             {
@@ -145,9 +142,8 @@ namespace Unit_Test
         [Test]
         public void TestEmailGood()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com", "Pri 25", "605 897 123");
 
             try
             {
@@ -162,9 +158,8 @@ namespace Unit_Test
         [Test]
         public void TestEmailBad()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com", "Pri 25", "605 897 123");
 
             try
             {

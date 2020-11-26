@@ -4,30 +4,45 @@ using System.Data.SqlClient;
 
 namespace Drazebni_databaze
 {
+    /// <summary>
+    /// Trida je singleton a obstarava unikatnost uzivatelu v ni
+    ///  Poskytuje veskere metody pro operace s uzivateli
+    /// </summary>
     public class DatabazeUzivatelu
     {
         private UzivatelProxy proxy = new UzivatelProxy();
-        private static DatabazeUzivatelu instance = null;
+        private static DatabazeUzivatelu _instance = null;
 
         private DatabazeUzivatelu()
         {
             this.uzivatele = new List<Uzivatel>();
         }
-
+        
+        /// <summary>
+        /// Metoda navrhoveho vzoru Singleton, muze byt pouze jedna instance
+        /// </summary>
         public static DatabazeUzivatelu Instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    instance = new DatabazeUzivatelu();
+                    _instance = new DatabazeUzivatelu();
                 }
-                return instance;
+                return _instance;
             }
         }
-
+        
+        /// <summary>
+        /// List uzivatelu kteri jsou aktualne ulozeni
+        /// </summary>
         public List<Uzivatel> uzivatele;
-
+        
+        /// <summary>
+        /// Pridava uzivatele do listu uzivatelu ve tride, zaroven ulozi uzivatele na SQL Server
+        /// </summary>
+        /// <param name="novyUzivatel">Instance pridavaneho uzivatele</param>
+        
         public void AddUzivatel(Uzivatel novyUzivatel)
         {
             try
@@ -51,7 +66,12 @@ namespace Drazebni_databaze
             }
             
         }
-
+        
+        /// <summary>
+        ///  Metoda pro overeni, zda je uzivatel aktualne v listu
+        /// </summary>
+        /// <param name="uzivatel">Uzivatel u ktereho chceme zjistit zda v listu je</param>
+        /// <returns>Vraci true pokud obsahuje, vraci false pokud neobsahuje</returns>
         public bool Contains(Uzivatel uzivatel)
         {
             if (uzivatele.Contains(uzivatel))
@@ -63,7 +83,10 @@ namespace Drazebni_databaze
                 return false;
             }
         }
-
+        
+        /// <summary>
+        /// Metoda nacteni uzivatelu, kteri jsou ulozeni na SQL Serveru
+        /// </summary>
         public void NactiUzivatele()
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
@@ -94,21 +117,37 @@ namespace Drazebni_databaze
             }
 
         }
+        
+        /// <summary>
+        /// Metoda na ulozeni uzivatele na SQL Server, vyuziva tridu proxy
+        /// </summary>
+        /// <param name="uzivatel"></param>
         public void Save(Uzivatel uzivatel)
         {
             proxy.Create(uzivatel);
         }
         
+        /// <summary>
+        /// Metoda na aktualizaci uzivatele, vyuziva tridu proxy
+        /// </summary>
+        /// <param name="uzivatel">Uzivatel ktereho chceme na serveru aktualizovat</param>
         public void Update(Uzivatel uzivatel)
         {
             proxy.Update(uzivatel);
         }
 
+        /// <summary>
+        /// Metoda na odebrani uzivatele ze serveru, vyuziva tridu proxy
+        /// </summary>
+        /// <param name="id">id uzivatele ktereho chceme ze serveru smazat</param>
         public void Remove(int id)
         {
             proxy.Remove(id);
         }
 
+        /// <summary>
+        /// Vypise vsechny uzivatele z listu uzivatelu
+        /// </summary>
         public void VypisUzivatelu()
         {
             Console.WriteLine("\n");
@@ -118,9 +157,14 @@ namespace Drazebni_databaze
             }
         }
 
+        /// <summary>
+        /// Metoda na ziskani uzivatele podle id z databaze
+        /// </summary>
+        /// <param name="id">Id uzivatele na serveru ktereho chceme ziskat</param>
+        /// <returns>Vraci uzivatele ktereho ziskame ze serveru</returns>
         public Uzivatel GetById(int id)
         {
-            return proxy.getByID(id);
+            return proxy.GetById(id);
         }
     }
 }
