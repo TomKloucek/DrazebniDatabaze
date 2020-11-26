@@ -71,13 +71,13 @@ namespace Drazebni_databaze
             }
         }
 
-        public void Remove(string jmeno)
+        public void Remove(int id)
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
 
-            using (SqlCommand command = new SqlCommand("DELETE FROM uzivatel WHERE jmeno = @jmeno", conn))
+            using (SqlCommand command = new SqlCommand("DELETE FROM uzivatel WHERE id = @id", conn))
             {
-                command.Parameters.Add(new SqlParameter("@jmeno", jmeno));
+                command.Parameters.Add(new SqlParameter("@id",id));
                 command.ExecuteNonQuery();
             }
         }

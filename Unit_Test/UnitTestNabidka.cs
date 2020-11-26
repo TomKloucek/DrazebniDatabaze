@@ -15,9 +15,9 @@ namespace Unit_Test
         [Test]
         public void TestNabidkaKonstruktor()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            //var setValidator = new SimpleSetValidator(db.uzivatele);
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com","Pri 25","605 897 123");
             Nabidka n = new Nabidka(u, 50);
 
             Assert.AreEqual(u, n.prihazujici);
@@ -27,9 +27,9 @@ namespace Unit_Test
         [Test]
         public void TestNabidkaToString()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            //var setValidator = new SimpleSetValidator(db.uzivatele);
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com","Pri 25","605 897 123");
             Nabidka n = new Nabidka(u, 50);
 
             Assert.AreEqual("Uzivatel karel prihazuje 50", n.ToString());

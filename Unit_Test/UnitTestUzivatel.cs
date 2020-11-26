@@ -15,9 +15,10 @@ namespace Unit_Test
         [Test]
         public void TestUzivatelKonstruktor()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            //var setValidator = new SimpleSetValidator(db.uzivatele);
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com","Pri 25","605 897 123");
+            Nabidka n = new Nabidka(u, 50);
 
             Assert.AreEqual("karel", u.Jmeno);
             Assert.AreEqual("Lilecek1", u.Heslo);
@@ -29,10 +30,11 @@ namespace Unit_Test
         [Test]
         public void TestUzivatelPasswordKratke()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
-
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            //var setValidator = new SimpleSetValidator(db.uzivatele);
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com","Pri 25","605 897 123");
+            Nabidka n = new Nabidka(u, 50);
+            
             try
             {
                 u.strongPassword("karel");
@@ -46,10 +48,10 @@ namespace Unit_Test
         [Test]
         public void TestUzivatelPasswordIdealni()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
-
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            //var setValidator = new SimpleSetValidator(db.uzivatele);
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com","Pri 25","605 897 123");
+            Nabidka n = new Nabidka(u, 50);
             try
             {
                 u.strongPassword("Louposlav123");
@@ -64,17 +66,17 @@ namespace Unit_Test
         [Test]
         public void TestUzivatelAdresaSpatna()
         {
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
-
+            DatabazeUzivatelu db = DatabazeUzivatelu.Instance;
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com","Pri 25","605 897 123");
+            Nabidka n = new Nabidka(u, 50);
             try
             {
                 u.isAdresa("Pri25");
                 Assert.Fail();
             }
-            catch
+            catch(Exception err)
             {
+                Console.WriteLine(err.Message);
             }
 
         }

@@ -30,9 +30,9 @@ namespace Unit_Test
             Auto a = new Auto("bmw", Skupina.A, datum, 650, 3);
             Drazba d = new Drazba(a, "popis");
 
-            DatabazeUzivatelu db = new DatabazeUzivatelu();
-            var setValidator = new SimpleSetValidator(db.uzivatele);
-            Uzivatel u = new Uzivatel("karel", "Lilecek1", setValidator, "spatny@frajer.com", "Pri 25", "605 897 123");
+            DatabazeUzivatelu db =  DatabazeUzivatelu.Instance;
+            //var setValidator = new SimpleSetValidator(db.uzivatele);
+            Uzivatel u = new Uzivatel("karel", "Lilecek1", "spatny@frajer.com", "Pri 25", "605 897 123");
             Nabidka n = new Nabidka(u, 50);
 
             d.pridej(n);

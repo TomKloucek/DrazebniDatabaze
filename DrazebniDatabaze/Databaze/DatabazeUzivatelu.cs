@@ -6,8 +6,8 @@ namespace Drazebni_databaze
 {
     public class DatabazeUzivatelu
     {
+        private UzivatelProxy proxy = new UzivatelProxy();
         private static DatabazeUzivatelu instance = null;
-        public UzivatelDAO dao = new UzivatelDAO();
 
         private DatabazeUzivatelu()
         {
@@ -96,18 +96,17 @@ namespace Drazebni_databaze
         }
         public void Save(Uzivatel uzivatel)
         {
-            dao.Create(uzivatel);
+            proxy.Create(uzivatel);
         }
-
         
         public void Update(Uzivatel uzivatel)
         {
-            dao.Update(uzivatel);
+            proxy.Update(uzivatel);
         }
 
-        public void Remove(string jmeno)
+        public void Remove(int id)
         {
-            dao.Remove(jmeno);
+            proxy.Remove(id);
         }
 
         public void VypisUzivatelu()
@@ -121,7 +120,7 @@ namespace Drazebni_databaze
 
         public Uzivatel GetById(int id)
         {
-            return dao.GetById(id);
+            return proxy.getByID(id);
         }
     }
 }
