@@ -4,7 +4,9 @@ using System.Data.SqlClient;
 
 namespace Drazebni_databaze
 {
+ 
     /// <summary>
+    /// Autor: Tomas Kloucek 
     /// Trida je singleton a obstarava unikatnost uzivatelu v ni
     ///  Poskytuje veskere metody pro operace s uzivateli
     /// </summary>
@@ -13,6 +15,9 @@ namespace Drazebni_databaze
         private UzivatelProxy proxy = new UzivatelProxy();
         private static DatabazeUzivatelu _instance = null;
 
+        /// <summary>
+        /// Konstruktor na vytvoreni databaze uzivatelu
+        /// </summary>
         private DatabazeUzivatelu()
         {
             this.uzivatele = new List<Uzivatel>();
@@ -41,8 +46,7 @@ namespace Drazebni_databaze
         /// <summary>
         /// Pridava uzivatele do listu uzivatelu ve tride, zaroven ulozi uzivatele na SQL Server
         /// </summary>
-        /// <param name="novyUzivatel">Instance pridavaneho uzivatele</param>
-        
+        /// <param name="novyUzivatel">Instance pridavaneho uzivatele</param>     
         public void AddUzivatel(Uzivatel novyUzivatel)
         {
             try
@@ -58,7 +62,7 @@ namespace Drazebni_databaze
                     Console.WriteLine($"Uzivatel: {novyUzivatel.Jmeno} byl pridan");
                 }
             }
-            catch(Exception e)
+            catch(Exception err)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Jmeno uzivatele nesmi byt null");

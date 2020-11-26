@@ -29,7 +29,7 @@ namespace Drazebni_databaze
 
         public int PrihazujiciID()
         {
-            UzivatelDAO dao = new UzivatelDAO();
+            UzivatelDao dao = new UzivatelDao();
             return dao.UzivatelID(this.prihazujici);
         }
 

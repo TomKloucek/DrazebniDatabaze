@@ -1,12 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace Drazebni_databaze
 {
-    public class UzivatelDAO
+    /// <summary>
+    /// Autor: Tomas Kloucek
+    /// Trida slouzi ke komunikaci s databazovym serverem
+    /// Je to navrhovy vzor DAO
+    /// </summary>
+    public class UzivatelDao
     {
+        /// <summary>
+        /// Metoda pro ziskani uzivatele ze serveru pomoci jeho id
+        /// Pouziva SqlClient
+        /// </summary>
+        /// <param name="id">id podle ktereho hledame</param>
+        /// <returns>Vraci nalezeneho uzivatele</returns>
         public Uzivatel GetById(int id)
         {
             Uzivatel uzivatel = null;
@@ -36,6 +45,11 @@ namespace Drazebni_databaze
             }
         }
 
+        /// <summary>
+        /// Metoda vraci id zadaneho uzivatele ze serveru
+        /// </summary>
+        /// <param name="u">Uzivatel ktereho id hledame</param>
+        /// <returns>Nalezene id</returns>
         public int UzivatelID(Uzivatel u)
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
@@ -54,6 +68,10 @@ namespace Drazebni_databaze
             return id;
         }
 
+        /// <summary>
+        /// Metoda na aktualizaci uzivatele na serveru
+        /// </summary>
+        /// <param name="uzivatel">Uzivatel ktereho chceme aktualizovat</param>
         public void Update(Uzivatel uzivatel)
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
@@ -71,6 +89,10 @@ namespace Drazebni_databaze
             }
         }
 
+        /// <summary>
+        /// Metoda na smazani uzivatele ze serveru
+        /// </summary>
+        /// <param name="id">id podle ktereho hledame zaznam ke smazani</param>
         public void Remove(int id)
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
@@ -82,6 +104,10 @@ namespace Drazebni_databaze
             }
         }
 
+        /// <summary>
+        /// Metoda na vytvoreni uzivatele na serveru
+        /// </summary>
+        /// <param name="uzivatel">Uzivatel ktereho na serveru chceme vytvorit</param>
         public void Create(Uzivatel uzivatel)
         {
             SqlConnection conn = DatabaseConnection.GetInstance();

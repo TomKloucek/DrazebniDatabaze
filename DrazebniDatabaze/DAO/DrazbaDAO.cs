@@ -14,7 +14,7 @@ namespace Drazebni_databaze
         /// <summary>
         /// Instance AutoDAO, protoze ji pouzivame v programu casteji
         /// </summary>
-        public AutoDAO dao = new AutoDAO();
+        public AutoDao dao = new AutoDao();
         /// <summary>
         /// Fuknce na ziskani id zadanehe drazby
         /// </summary>

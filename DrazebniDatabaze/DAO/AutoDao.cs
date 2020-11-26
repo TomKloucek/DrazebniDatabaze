@@ -9,7 +9,7 @@ namespace Drazebni_databaze
     /// Trida vytvari objekt DAO ktery slouzi pro operace na databazi
     /// s objekty typu auto
     /// </summary>
-    public class AutoDAO
+    public class AutoDao
     {
         /// <summary>
         /// Fuknce na ziskani id zadaneho auta

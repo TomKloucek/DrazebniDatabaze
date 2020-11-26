@@ -28,7 +28,7 @@ namespace Drazebni_databaze
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
             SqlCommand command = null;
-            UzivatelDAO dao = new UzivatelDAO();
+            UzivatelDao dao = new UzivatelDao();
             DrazbaDAO daoD = new DrazbaDAO();
 
             using (command = new SqlCommand("INSERT INTO nabidka(castka,uzivatel_id,drazba_id) VALUES (@castka,@uzivatel_id,@drazba_id)", conn))
@@ -45,7 +45,7 @@ namespace Drazebni_databaze
 
         public Nabidka Read(int id)
         {
-            UzivatelDAO dao = new UzivatelDAO();
+            UzivatelDao dao = new UzivatelDao();
             Nabidka n = null;
             SqlConnection conn = DatabaseConnection.GetInstance();
 
@@ -85,7 +85,7 @@ namespace Drazebni_databaze
         {
             SqlConnection conn = DatabaseConnection.GetInstance();
             SqlCommand command = null;
-            UzivatelDAO dao = new UzivatelDAO();
+            UzivatelDao dao = new UzivatelDao();
 
             using (command = new SqlCommand("UPDATE uzivatel SET jmeno=@jmeno,heslo=@heslo,adresa=@adresa, where id = @id", conn))
             {

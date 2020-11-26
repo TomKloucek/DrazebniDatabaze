@@ -14,7 +14,7 @@ namespace Drazebni_databaze
 
         public DrazbaDAO drazbaDAO = new DrazbaDAO();
         public NabidkaDAO nabidkaDAO = new NabidkaDAO();
-        public AutoDAO autoDAO = new AutoDAO();
+        public AutoDao autoDAO = new AutoDao();
 
         public Queue<Drazba> FrontaDrazeb { get => frontaDrazeb; set => frontaDrazeb = value; }
         public LinkedList<Drazba> UkonceneDrazby { get => ukonceneDrazby; set => ukonceneDrazby = value; }
